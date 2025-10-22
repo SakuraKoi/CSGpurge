@@ -33,7 +33,7 @@ public class CSGPurger {
             }
             if (collapsableTag.contains(children.name)) {
                 if (children.childrens.size() == 1) {
-                    ast.replaceAt(children, purge(children.childrens.get(0), anythingCleaned));
+                    ast.replaceAt(children, children.childrens.get(0));
                     anythingCleaned.incrementAndGet();
                 }
             }
@@ -45,7 +45,7 @@ public class CSGPurger {
                         var matrix2 = json2Matrix(JSON.parseArray(firstChild.arguments));
                         var newMatrix = mergeMultmatrix(matrix1, matrix2);
                         firstChild.arguments = matrix2Str(newMatrix);
-                        ast.replaceAt(children, purge(firstChild, anythingCleaned));
+                        ast.replaceAt(children, firstChild);
                         anythingCleaned.incrementAndGet();
                     }
                 }
