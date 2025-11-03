@@ -50,6 +50,13 @@ public class CSGPurger {
                     }
                 }
             }
+            if ("intersection".equalsIgnoreCase(children.name)) {
+                if (children.childrens.size() == 2) {
+                    children.childrens.add(new CSGParser.CSGAst("cube", "[100000, 100000, 100000]", false));
+                    anythingCleaned.incrementAndGet();
+                }
+
+            }
         }
         ast.childrens.forEach(ast1 -> purge(ast1, anythingCleaned));
         return ast;
