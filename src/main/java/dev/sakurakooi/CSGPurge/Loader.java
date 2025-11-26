@@ -50,9 +50,11 @@ public class Loader {
         CSGParser.CSGAst ast = parser.parse(content);
 
         AtomicInteger anythingCleaned = new AtomicInteger();
+        boolean showUnknownDirectiveWarning = true;
         do {
             anythingCleaned.set(0);
-            CSGPurger.purge(ast, anythingCleaned);
+            CSGPurger.purge(ast, anythingCleaned, showUnknownDirectiveWarning);
+            showUnknownDirectiveWarning = false;
             log.info("Removed {} nodes", anythingCleaned.get());
         } while (anythingCleaned.get() > 0);
 
