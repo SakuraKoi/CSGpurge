@@ -36,16 +36,16 @@ public class CSGElements {
 
     public static final List<String> transformationDirective = Arrays.asList(
             "multmatrix",
-            "color"
+            "color",
+            "render"
     );
 
     // I'm not gonna handle it, at least for now
-    public static final List<String> unsupportedirective = Arrays.asList(
+    public static final List<String> unsupportedDirective = Arrays.asList(
             "hull",
             "minkowski",
-            "render",
             "polyhedron"
     );
 
-    public static final List<String> allDirectives = new ArrayList<>(Stream.of(shapeDirective.stream(), booleanDirective.stream(), transformationDirective.stream()).flatMap(Function.identity()).distinct().toList());
+    public static final List<String> allDirectives = new ArrayList<>(Stream.of(shapeDirective.stream(), booleanDirective.stream(), transformationDirective.stream(), unsupportedDirective.stream()).flatMap(Function.identity()).distinct().toList());
 }
