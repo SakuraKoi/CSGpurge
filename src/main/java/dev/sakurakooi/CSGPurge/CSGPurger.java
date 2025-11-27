@@ -19,8 +19,12 @@ public class CSGPurger {
     );
 
     public static void purge(CSGParser.CSGAst node, AtomicInteger cleaned, boolean showUnknownDirectiveWarning) {
-        if (showUnknownDirectiveWarning && !CSGElements.allDirectives.contains(node.name) && !"root".equals(node.name)) {
-            log.warn("Unknown directive encountered during purge: {}", node.name);
+        if (showUnknownDirectiveWarning && !"root".equals(node.name)) {
+            if (!CSGElements.allDirectives.contains(node.name)) {
+                log.warn("Unknown directive encountered during purge, thats a bug: {}", node.name);
+            } else if (CSGElements.unsupportedirective.contains(node.name)) {
+                log.warn("Unsupported directive, might be a trouble: {}", node.name);
+            }
         }
 
         for (IPurger purger : purgers) {

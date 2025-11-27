@@ -39,10 +39,12 @@ public class CSGElements {
             "color"
     );
 
-    // Just left here, I'm not using it so not gonna handle it, at least for now
-    public static final List<String> unusedDirective = Arrays.asList(
+    // I'm not gonna handle it, at least for now
+    public static final List<String> unsupportedirective = Arrays.asList(
             "hull",
-            "minkowski"
+            "minkowski",
+            "render",
+            "polyhedron"
     );
 
     public static final List<String> allDirectives = new ArrayList<>(Stream.of(shapeDirective.stream(), booleanDirective.stream(), transformationDirective.stream()).flatMap(Function.identity()).distinct().toList());
